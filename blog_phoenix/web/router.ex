@@ -1,6 +1,8 @@
 defmodule BlogPhoenix.Router do
   use BlogPhoenix.Web, :router
 
+  resources "/posts", PostController
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
