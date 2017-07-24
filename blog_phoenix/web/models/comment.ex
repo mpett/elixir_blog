@@ -4,7 +4,7 @@ defmodule BlogPhoenix.Comment do
   schema "comments" do
     field :name, :string
     field :content, :string
-    belongs_to :post, BlogPhoenix.Post
+    belongs_to :post, BlogPhoenix.Post, foreign_key: :post_id
 
     timestamps()
   end
