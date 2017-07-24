@@ -4,6 +4,8 @@ defmodule BlogPhoenix.PostController do
   alias BlogPhoenix.Post
   alias BlogPhoenix.Comment
 
+  plug :scrub_params, "comment" when action in [:add_comment]
+
   def index(conn, _params) do
     posts = Repo.all(Post)
     render(conn, "index.html", posts: posts)
