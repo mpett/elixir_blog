@@ -62,4 +62,5 @@ defmodule BlogPhoenix.PostController do
     |> put_flash(:info, "Post deleted successfully.")
     |> redirect(to: post_path(conn, :index))
   end
+  
 end

@@ -1,7 +1,9 @@
 defmodule BlogPhoenix.Router do
   use BlogPhoenix.Web, :router
 
-  resources "/posts", PostController
+  resources "/posts", PostController do
+    post "/comment", PostController, :add_comment
+  end
 
   pipeline :browser do
     plug :accepts, ["html"]
