@@ -2,6 +2,7 @@ defmodule BlogPhoenix.PostController do
   use BlogPhoenix.Web, :controller
 
   alias BlogPhoenix.Post
+  alias BlogPhoenix.Comment
 
   def index(conn, _params) do
     posts = Repo.all(Post)
@@ -62,5 +63,5 @@ defmodule BlogPhoenix.PostController do
     |> put_flash(:info, "Post deleted successfully.")
     |> redirect(to: post_path(conn, :index))
   end
-  
+
 end
