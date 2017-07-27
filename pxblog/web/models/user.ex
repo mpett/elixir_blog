@@ -7,6 +7,9 @@ defmodule Pxblog.User do
     field :password_digest, :string
 
     timestamps()
+
+    field :password, :string, virtual: true
+    field :password_confirmation, :string, virtual: true
   end
 
   @doc """
@@ -14,7 +17,13 @@ defmodule Pxblog.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:username, :email, :password_digest])
-    |> validate_required([:username, :email, :password_digest])
+    |> cast(params, [:username, :email, :password, :password_confirmation])
+    |> validate_required([:username, :email, :password, :password_confirmation])
+    |> hash_password
+  end
+
+  defp hash_password(changeset) do
+    changeset
+    |> put_change(:password_digest, "ABCDE")
   end
 end
