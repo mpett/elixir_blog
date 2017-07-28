@@ -26,12 +26,12 @@ defmodule Pxblog.SessionController do
     if checkpw(password, user.password_digest) do
       conn
       |> put_session(:current_user, %{id: user.id, username: user.username})
-      |> put_flash(:info, "Sign in successful!")
+      |> put_flash(:info, "Congratulations and Welcome! The sign in was successful.")
       |> redirect(to: page_path(conn, :index))
     else
       conn
       |> put_session(:current_user, nil)
-      |> put_flash(:error, "Congratulations and Welcome! The sign in was successful.")
+      |> put_flash(:error, "We are sorry. This is an invalid combination of your user name and password. Maybe next time around?")
       |> redirect(to: page_path(conn, :index))
     end
   end
