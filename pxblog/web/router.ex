@@ -26,6 +26,13 @@ defmodule Pxblog.Router do
     get "/", PageController, :index
   end
 
+  def delete(conn, _params) do
+    conn
+    |> delete_session(:current_user)
+    |> put_flash(:info, "Signed out succesfully!")
+    |> redirect(to: page_path(conn, :index))
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Pxblog do
   #   pipe_through :api
