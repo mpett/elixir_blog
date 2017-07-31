@@ -16,6 +16,13 @@ defmodule Pxblog.SessionController do
     |> sign_in(user_params["password"], conn)
   end
 
+  def delete(conn, _params) do
+    conn
+    |> delete_session(:current_user)
+    |> put_flash(:info, "Signed out successfully!")
+    |> redirect(to: page_path(conn, :index))
+  end
+
   defp sign_in(user, password, conn) when is_nil(user) do
     conn
     |> put_flash(:error, "We are sorry. This is an invalid combination of your user name and password. Maybe next time around?")
